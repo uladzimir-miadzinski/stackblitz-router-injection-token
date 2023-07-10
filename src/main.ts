@@ -1,21 +1,36 @@
 import 'zone.js/dist/zone';
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { bootstrapApplication } from '@angular/platform-browser';
+import { CommonModule } from "@angular/common";
+import { Component } from "@angular/core";
+
+import { routes } from "./app.routes";
+import { provideRouter, RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
-  selector: 'my-app',
+  selector: 'app-main',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterOutlet, RouterLink],
   template: `
     <h1>Hello from {{name}}!</h1>
-    <a target="_blank" href="https://angular.io/start">
-      Learn more about Angular 
-    </a>
+    <router-outlet></router-outlet>
+    <button 
+      [routerLink]="''"
+    >Home</button>
+    <button 
+      [routerLink]="'child-lazy'"
+    >Child Lazy</button>
+    <button 
+      [routerLink]="'child-lazy-2'"
+    >Child Lazy 2</button>
+    <button 
+      [routerLink]="'child-eager'"
+    >Child Eager</button>
   `,
 })
-export class App {
+export class MainComponent {
   name = 'Angular';
 }
 
-bootstrapApplication(App);
+bootstrapApplication(MainComponent, {
+  providers: [provideRouter(routes)]
+});
