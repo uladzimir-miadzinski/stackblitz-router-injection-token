@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core";
 import { Routes } from "@angular/router";
-import { ChildEagerComponent } from "./child-eager.component";
+import { ChildEagerComponent } from "./child-eager/child-eager.component";
 
 export const routes: Routes = [
   {
@@ -13,7 +13,7 @@ export const routes: Routes = [
   },
   {
     path: 'child-eager',
-    component: ChildEagerComponent
+    loadChildren: () => import('./child-eager/child-eager.module').then(x => x.ChildEagerModule)
   }
 ];
 

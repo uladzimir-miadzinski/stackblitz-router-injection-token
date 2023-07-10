@@ -5,6 +5,7 @@ import { Component } from "@angular/core";
 
 import { routes } from "./app.routes";
 import { provideRouter, RouterLink, RouterOutlet } from '@angular/router';
+import { HelloService } from './hello.service';
 
 @Component({
   selector: 'app-main',
@@ -29,6 +30,10 @@ import { provideRouter, RouterLink, RouterOutlet } from '@angular/router';
 })
 export class MainComponent {
   name = 'Angular';
+
+  constructor(private hello: HelloService) {
+    hello.hi();
+  }
 }
 
 bootstrapApplication(MainComponent, {
